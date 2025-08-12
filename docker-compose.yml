@@ -1,0 +1,31 @@
+services:
+  apache2:
+    build: ./apache2
+    container_name: apache2
+    volumes:
+      - ./apache2/www:/usr/lib/www
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql8
+    stdin_open: true
+    tty: true
+    networks:
+      - appnet
+
+  mysql8:
+    image: mysql:8.0
+    container_name: mysql8
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3306:3306"
+    stdin_open: true
+    tty: true
+    networks:
+      - appnet
+
+networks:
+  appnet:
