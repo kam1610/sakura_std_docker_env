@@ -1,3 +1,5 @@
+さくらレンタルサーバー，スタンダードプラン"風の"環境です
+
 # Usage
 
     docker-compose down && docker-compose up --build
